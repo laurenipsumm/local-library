@@ -5,6 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 
+// DB setup
+// default DB connection
+var mongoDB = 'mongodb+srv://lclocallib:fru1Tc4K3g00d@cluster0-suhii.mongodb.net/local_library?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+// get default connection
+var db = mongoose.connection;
+// Bind connection to error event (print connection errors in console)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
